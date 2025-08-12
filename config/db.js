@@ -1,7 +1,8 @@
 const mongoose = require ('mongoose');
 const Schema = mongoose.Schema;
+const env = require('dotenv')
 const Objectid = Schema.ObjectId;
-mongoose.connect('process.env.MONGO_URL')
+mongoose.connect(process.env.MONGO_URL)
 
 const users = new Schema({
     firstName : String,
@@ -25,25 +26,20 @@ const carts = new Schema({
         productID : Objectid,
         quantity : Number
     }],
-    lastUpdated : {
-        type : Date,
-        default : Date.now
-    }
-})
+},{timestamps:{
+    createdAt : false,
+    updatedAt : true
+}})
 
 const products = new Schema({
     name : String,
     description : String,
     price : Number,
     category : String,
-    stock : Number,
+    stock : {type : String, default : 1},
     imgUrl : String,
-    createdAt : Date,
-    lastUpdates : {
-        type : Date,
-        default : Date,
-    }
-})
+    adminID : Objectid
+}, {timestamps : true})
 
 const orders = new Schema({
     userID : Objectid,
