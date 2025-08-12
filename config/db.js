@@ -38,10 +38,10 @@ const products = new Schema({
     category : String,
     stock : Number,
     imgUrl : String,
-    createdAt : Date.now,
+    createdAt : Date,
     lastUpdates : {
         type : Date,
-        default : Date.now,
+        default : Date,
     }
 })
 
@@ -53,7 +53,7 @@ const orders = new Schema({
         price : Number
     }],
     totalAmount : Number,
-    purchaseDate : Date.now
+    purchaseDate : Date
 })
 
 const userModel = mongoose.model('users', users)
