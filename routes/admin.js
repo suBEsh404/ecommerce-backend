@@ -52,7 +52,13 @@ adminRoutes.post('/login',async function(req, res){
         return res.status(403).json({
             message: "Admin Not Found!, Please signUp first"
         })
-    }else{
+    }
+    const checkPass = await bcrypt.compare( password,fetchData.password);
+    if(!checkPass){
+        return res.status(403).json({
+            message : "Invalid Credentials"
+        })
+    };
         const token = jwt.sign({
             _id : fetchData._id 
         },ADMIN_JWT_SECRET)
@@ -65,7 +71,6 @@ adminRoutes.post('/login',async function(req, res){
         res.json({
             token : token
         })
-    }
 });
 
 
