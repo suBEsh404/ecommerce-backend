@@ -23,11 +23,12 @@ const admins = new Schema({
 const carts = new Schema({
     userID : Objectid,
     items : [{
+        _id : false,
         productID : Objectid,
-        quantity : Number
+        quantity : {type : Number, default: 1},
     }],
 },{timestamps:{
-    createdAt : false,
+    createdAt : true,
     updatedAt : true
 }})
 
@@ -49,7 +50,7 @@ const orders = new Schema({
         price : Number
     }],
     totalAmount : Number,
-    purchaseDate : Date
+    purchaseDate : {type:Date,default:Date.now}
 })
 
 const userModel = mongoose.model('users', users)
