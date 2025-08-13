@@ -11,10 +11,9 @@ app.use('/admin',adminRoutes)
 
 
 async function main(){
-    await mongoose.connect('MONGO_URL')
-    app.listen(3000);
-    res.json({
-        message : "subesh"
-    })
+    await mongoose.connect(process.env.MONGO_URL)
+    app.listen(5000);
+    console.log("Server Running")
+
 };
 main();

@@ -1,10 +1,10 @@
 const express = require('express')
-const {z, email} = require('zod')
+const {z} = require('zod')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {Router} = require('express')
-const {adminModel , productModel, cartsModel, orderModel} = require('../config/db')
-const {userAuth, adminAuth} = require('../config/auth')
+const {adminModel , productModel} = require('../config/db')
+const {adminAuth} = require('../config/auth')
 const ADMIN_JWT_SECRET = process.env.ADMIN_JWT_SECRET
 const app = express();
 adminRoutes = Router();
